@@ -1,0 +1,143 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Real-Time Token KPI Dashboard</title>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        canvas {-->
+<!--            max-width: 800px;-->
+<!--            margin: 20px auto;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Real-Time Token KPI Dashboard</h1>-->
+
+<!--<h3>Tokens Per Minute</h3>-->
+<!--<canvas id="tokensPerMinuteChart"></canvas>-->
+
+<!--<h3>Tokens Per Hour</h3>-->
+<!--<canvas id="tokensPerHourChart"></canvas>-->
+
+<!--<h3>Tokens Per Day</h3>-->
+<!--<canvas id="tokensPerDayChart"></canvas>-->
+
+<!--<h3>Passing vs Not Passing Percentage</h3>-->
+<!--<canvas id="passingPercentageChart"></canvas>-->
+
+<!--<script>-->
+<!--    async function fetchData() {-->
+<!--        try {-->
+<!--            const response = await fetch('http://localhost:4000/api/kpi');-->
+<!--            if (!response.ok) {-->
+<!--                throw new Error(`HTTP error! Status: ${response.status}`);-->
+<!--            }-->
+<!--            const data = await response.json();-->
+<!--            console.log("Fetched data:", data); // Debugging line-->
+<!--            return data;-->
+<!--        } catch (error) {-->
+<!--            console.error("Error fetching data:", error);-->
+<!--            return null;-->
+<!--        }-->
+<!--    }-->
+
+<!--    function updateCharts(data) {-->
+<!--        if (!data) return;-->
+
+<!--        // Tokens Per Minute-->
+<!--        tokensPerMinuteChart.data.labels = Object.keys(data.tokensPerMinute);-->
+<!--        tokensPerMinuteChart.data.datasets[0].data = Object.values(data.tokensPerMinute);-->
+<!--        tokensPerMinuteChart.update();-->
+
+<!--        // Tokens Per Hour-->
+<!--        tokensPerHourChart.data.labels = Object.keys(data.tokensPerHour);-->
+<!--        tokensPerHourChart.data.datasets[0].data = Object.values(data.tokensPerHour);-->
+<!--        tokensPerHourChart.update();-->
+
+<!--        // Tokens Per Day-->
+<!--        tokensPerDayChart.data.labels = Object.keys(data.tokensPerDay);-->
+<!--        tokensPerDayChart.data.datasets[0].data = Object.values(data.tokensPerDay);-->
+<!--        tokensPerDayChart.update();-->
+
+<!--        // Passing vs Not Passing-->
+<!--        passingPercentageChart.data.datasets[0].data = [-->
+<!--            parseFloat(data.passingPercentage),-->
+<!--            parseFloat(data.notPassingPercentage)-->
+<!--        ];-->
+<!--        passingPercentageChart.update();-->
+<!--    }-->
+
+<!--    async function refreshCharts() {-->
+<!--        const data = await fetchData();-->
+<!--        if (data) updateCharts(data);-->
+<!--    }-->
+
+<!--    // Initialize Charts-->
+<!--    const ctxMinute = document.getElementById('tokensPerMinuteChart').getContext('2d');-->
+<!--    const tokensPerMinuteChart = new Chart(ctxMinute, {-->
+<!--        type: 'line',-->
+<!--        data: {-->
+<!--            labels: [],-->
+<!--            datasets: [{-->
+<!--                label: 'Tokens Per Minute',-->
+<!--                data: [],-->
+<!--                borderColor: 'blue',-->
+<!--                borderWidth: 1-->
+<!--            }]-->
+<!--        },-->
+<!--        options: { responsive: true, maintainAspectRatio: false }-->
+<!--    });-->
+
+<!--    const ctxHour = document.getElementById('tokensPerHourChart').getContext('2d');-->
+<!--    const tokensPerHourChart = new Chart(ctxHour, {-->
+<!--        type: 'bar',-->
+<!--        data: {-->
+<!--            labels: [],-->
+<!--            datasets: [{-->
+<!--                label: 'Tokens Per Hour',-->
+<!--                data: [],-->
+<!--                backgroundColor: 'green'-->
+<!--            }]-->
+<!--        },-->
+<!--        options: { responsive: true, maintainAspectRatio: false }-->
+<!--    });-->
+
+<!--    const ctxDay = document.getElementById('tokensPerDayChart').getContext('2d');-->
+<!--    const tokensPerDayChart = new Chart(ctxDay, {-->
+<!--        type: 'bar',-->
+<!--        data: {-->
+<!--            labels: [],-->
+<!--            datasets: [{-->
+<!--                label: 'Tokens Per Day',-->
+<!--                data: [],-->
+<!--                backgroundColor: 'orange'-->
+<!--            }]-->
+<!--        },-->
+<!--        options: { responsive: true, maintainAspectRatio: false }-->
+<!--    });-->
+
+<!--    const ctxPie = document.getElementById('passingPercentageChart').getContext('2d');-->
+<!--    const passingPercentageChart = new Chart(ctxPie, {-->
+<!--        type: 'pie',-->
+<!--        data: {-->
+<!--            labels: ['Passing', 'Not Passing'],-->
+<!--            datasets: [{-->
+<!--                data: [],-->
+<!--                backgroundColor: ['#4CAF50', '#F44336']-->
+<!--            }]-->
+<!--        },-->
+<!--        options: { responsive: true, maintainAspectRatio: false }-->
+<!--    });-->
+
+<!--    // Auto-refresh every 1 minute-->
+<!--    refreshCharts();-->
+<!--    setInterval(refreshCharts, 60000);-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

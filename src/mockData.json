@@ -1,0 +1,5 @@
+[
+  { "id": 1, "token": "SOL", "price": 150, "volume": 5000, "marketCap": 1000000 },
+  { "id": 2, "token": "BTC", "price": 45000, "volume": 8000, "marketCap": 900000000 },
+  { "id": 3, "token": "ETH", "price": 3000, "volume": 7000, "marketCap": 500000000 }
+]
